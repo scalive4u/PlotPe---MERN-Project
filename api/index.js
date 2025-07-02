@@ -8,7 +8,7 @@ import cookieParser from "cookie-parser";
 import path from "path";
 
 // Allow all origins (temporary during dev)
-const cors = require("cors");
+import cors from "cors";
 
 dotenv.config();
 
