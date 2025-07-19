@@ -26,10 +26,15 @@ const __dirname = path.resolve();
 const app = express();
 
 // Allow all origins (temporary during dev)
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://your-frontend-domain.onrender.com", // replace with actual
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    credentials: true,
+    origin: allowedOrigins,
+    credentials: true, // important for cookie-based auth
   })
 );
 
