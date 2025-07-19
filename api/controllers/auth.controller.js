@@ -42,7 +42,7 @@ export const google = async (req, res, next) => {
       res
         .cookie("access_token", token, {
           httpOnly: true,
-          secure: false,
+          secure: true,
           sameSite: "None",
         })
         .status(200)
