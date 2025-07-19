@@ -25,7 +25,11 @@ export const signin = async (req, res, next) => {
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
     const { password: pass, ...rest } = validUser._doc;
     res
-      .cookie("access_token", token, { httpOnly: true })
+      .cookie("access_token", token, {
+        httpOnly: true,
+        secure: true, // for HTTPS
+        sameSite: "None", // because frontend and backend are on different origins
+      })
       .status(200)
       .json(rest);
   } catch (error) {
@@ -42,8 +46,8 @@ export const google = async (req, res, next) => {
       res
         .cookie("access_token", token, {
           httpOnly: true,
-          secure: false,
-          sameSite: "Lax",
+          secure: true, // for HTTPS
+          sameSite: "None", // because frontend and backend are on different origins
         })
         .status(200)
         .json(rest);
