@@ -26,7 +26,12 @@ const __dirname = path.resolve();
 const app = express();
 
 // Allow all origins (temporary during dev)
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
